@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulse — a system monitor that lives on your desktop</title>
+<title>System Monitor — always-on, right on your desktop</title>
+<!-- Favicon: gradient circle + waveform, matching the header logo mark.
+     Swap this for <link rel="icon" href="./img/favicon.png"> if you'd rather use your own file. -->
+<link rel="icon" type="image/svg+xml" href="./img/stm.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -19,9 +22,10 @@
     --line:#223049;
     --mono: 'IBM Plex Mono', ui-monospace, monospace;
     --sans: 'IBM Plex Sans', system-ui, sans-serif;
+    --header-h:84px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; scroll-padding-top:var(--header-h);}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
@@ -35,6 +39,7 @@
   }
   a{color:inherit; text-decoration:none;}
   .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
+  section[id]{scroll-margin-top:var(--header-h);}
 
   /* Background texture: faint grid */
   .grid-bg{
@@ -63,11 +68,15 @@
     font-family:var(--mono); font-weight:600; font-size:18px;
     letter-spacing:-0.02em;
   }
-  .logo-dot{
-    width:10px; height:10px; border-radius:50%;
-    background:var(--amber);
-    box-shadow:0 0 0 0 rgba(255,180,84,0.6);
-    animation:pulse-dot 2.2s ease-out infinite;
+  .logo-mark{
+    width:30px; height:30px; border-radius:50%; flex:none;
+    padding:2px;
+    background:linear-gradient(135deg, var(--amber), var(--teal));
+  }
+  .logo-mark img{
+    width:100%; height:100%; border-radius:50%;
+    object-fit:cover; display:block;
+    background:var(--panel-2);
   }
   @keyframes pulse-dot{
     0%{box-shadow:0 0 0 0 rgba(255,180,84,0.55);}
@@ -121,6 +130,7 @@
   .mobile-menu.open a:nth-child(4){transition-delay:.2s;}
   .mobile-menu a:last-child{border-bottom:none;}
   .mobile-menu a:hover, .mobile-menu a:focus-visible{color:var(--teal);}
+
   .btn{
     font-family:var(--mono);
     font-size:13px; font-weight:500;
@@ -292,6 +302,7 @@
 
   .install-block{
     margin-top:48px;
+    margin-bottom:16px;
     background:var(--panel); border:1px solid var(--line); border-radius:10px;
     padding:20px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px;
     flex-wrap:wrap;
@@ -306,6 +317,10 @@
     transition:border-color .15s, color .15s;
   }
   .copy-btn:hover{border-color:var(--teal); color:var(--teal);}
+  @media(max-width:900px){
+    .install-block{flex-direction:column; align-items:stretch; gap:18px;}
+    .copy-btn{align-self:flex-start; margin-top:2px;}
+  }
 
   /* SPECS STRIP */
   .specs{
@@ -387,7 +402,7 @@
 <header>
   <div class="wrap">
     <nav>
-      <div class="logo"><span class="logo-dot"></span>pulse</div>
+      <div class="logo"><span class="logo-mark"><img src="./img/stm.jpg" alt="System Monitor logo"></span>system monitor</div>
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#how">Install</a>
@@ -395,7 +410,7 @@
         <a href="#team">Team</a>
       </div>
       <div class="nav-actions">
-        <a href="#" class="btn btn-primary download-btn">Get Pulse</a>
+        <a href="#" class="btn btn-primary download-btn">Get System Monitor</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
         </button>
@@ -417,9 +432,9 @@
     <div>
       <div class="eyebrow">Live system monitor</div>
       <h1>Watch your machine<br><span class="accent">breathe.</span></h1>
-      <p class="lead">Pulse is a lightweight, always-on monitor for Linux, macOS, and Windows. CPU, memory, network, disks and processes — updated every second, docked right on your desktop.</p>
+      <p class="lead">System Monitor is a lightweight, always-on monitor for Linux, macOS, and Windows. CPU, memory, network, disks and processes — updated every second, docked right on your desktop.</p>
       <div class="hero-ctas">
-        <a href="#" class="btn btn-primary download-btn">Download Pulse</a>
+        <a href="#" class="btn btn-primary download-btn">Download System Monitor</a>
         <a href="#how" class="btn btn-ghost">See how it works</a>
       </div>
       <div class="install-hint">running on <code>Linux · macOS · Windows</code></div>
@@ -476,7 +491,7 @@
     <div class="section-head reveal">
       <div class="eyebrow">What it shows</div>
       <h2>Every vital sign, one glance away.</h2>
-      <p>No dashboards to open, no commands to remember. Pulse sits quietly and tells you exactly what your system is doing, right now.</p>
+      <p>No dashboards to open, no commands to remember. System Monitor sits quietly and tells you exactly what your system is doing, right now.</p>
     </div>
     <div class="feature-grid">
       <div class="feature reveal">
@@ -507,7 +522,7 @@
       <div class="feature reveal">
         <svg class="f-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>
         <h3>Featherweight</h3>
-        <p>Under 10 MB of RAM and under 1% CPU — Pulse won't show up on its own dashboard.</p>
+        <p>Under 10 MB of RAM and under 1% CPU — System Monitor won't show up on its own dashboard.</p>
       </div>
     </div>
   </section>
@@ -526,7 +541,7 @@
       <div class="step reveal">
         <span class="num">02</span>
         <h3>Launch</h3>
-        <p>Pulse docks quietly next to your system clock or in your terminal.</p>
+        <p>System Monitor docks quietly next to your system clock or in your terminal.</p>
       </div>
       <div class="step reveal">
         <span class="num">03</span>
@@ -535,7 +550,7 @@
       </div>
     </div>
     <div class="install-block reveal">
-      <code id="installCmd">curl -sSL get.pulse.dev/install | sh <span class="cmt"># Linux, macOS & Windows (WSL)</span></code>
+      <code id="installCmd">curl -sSL get.systemmonitor.dev/install | sh <span class="cmt"># Linux, macOS & Windows (WSL)</span></code>
       <button class="copy-btn" id="copyBtn">Copy</button>
     </div>
   </section>
@@ -551,9 +566,9 @@
 
   <section id="team" class="wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Behind Pulse</div>
+      <div class="eyebrow">Behind System Monitor</div>
       <h2>Built together.</h2>
-      <p>Two people, one project — designed and maintained side by side.Thanks to mahan07dev and kasrarasa-coder</p>
+      <p>Two people, one project — designed and maintained side by side. Thanks to mahan07dev and kasrarasa-coder.</p>
     </div>
     <div class="creators-grid">
       <div class="creator-card reveal">
@@ -593,7 +608,7 @@
     <h2 class="reveal">Your system, always in view.</h2>
     <p class="reveal">Free, open source, and built for people who like knowing what's actually going on — on Linux, macOS, or Windows.</p>
     <div class="final-ctas reveal">
-      <a href="#" class="btn btn-primary download-btn">Download Pulse</a>
+      <a href="#" class="btn btn-primary download-btn">Download System Monitor</a>
       <a href="#" class="btn btn-ghost github-repo-btn" target="_blank" rel="noopener">Star on GitHub</a>
     </div>
   </section>
@@ -615,7 +630,7 @@
   // LINKS — put your real URLs here. Every matching button/element
   // below will automatically use the link you set.
   // ─────────────────────────────────────────────────────────────
-  const DOWNLOAD_LINK       = "https://github.com/mahan07dev/System-Monitor/releases";     // TODO: "Get Pulse" / "Download Pulse" buttons
+  const DOWNLOAD_LINK       = "https://github.com/mahan07dev/System-Monitor/releases";     // TODO: "Get System Monitor" / "Download System Monitor" buttons
   const GITHUB_REPO_LINK    = "https://github.com/mahan07dev/System-Monitor/releases";      // TODO: "Star on GitHub" button
   const CREATOR_GITHUB_LINKS = {
     1: "https://github.com/kasrarasa-coder",  // TODO: first creator's GitHub
@@ -667,6 +682,37 @@
     if (window.innerWidth > 900) closeMobileMenu();
   });
 
+  // ─────────────────────────────────────────────────────────────
+  // PRECISE SECTION SCROLLING — measures the real, current header
+  // height and scrolls exactly that far past it, every time. This
+  // is more reliable across browsers/screen sizes than CSS
+  // scroll-padding alone, especially right after the mobile menu
+  // closes.
+  // ─────────────────────────────────────────────────────────────
+  const siteHeader = document.querySelector('header');
+
+  function scrollToId(id){
+    const target = document.querySelector(id);
+    if (!target) return;
+    const headerHeight = siteHeader.getBoundingClientRect().height;
+    const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href.length > 1 && document.querySelector(href)) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMobileMenu();
+        // wait one frame so the mobile menu's own layout change (if any)
+        // has settled before we measure and scroll
+        requestAnimationFrame(() => scrollToId(href));
+        history.pushState(null, '', href);
+      });
+    }
+  });
+
   // Signature pulse-divider animation on scroll into view
   const divider = document.getElementById('pulseDivider');
   const io = new IntersectionObserver((entries) => {
@@ -674,7 +720,9 @@
   }, { threshold: 0.4 });
   io.observe(divider);
 
-  // Scroll-reveal: elements rise up into place as they enter the viewport
+  // Scroll-reveal: elements rise up into place as soon as they start
+  // entering the viewport, rather than waiting until they're centered —
+  // avoids the "blank section until you scroll all the way down" feeling.
   const revealEls = document.querySelectorAll('.reveal');
   const revealIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -683,7 +731,7 @@
         revealIO.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px 120px 0px' });
 
   revealEls.forEach((el, i) => {
     // stagger items that sit inside the same grid (features, steps, creator cards)
@@ -694,6 +742,15 @@
       el.style.setProperty('--reveal-delay', `${Math.min(idx, 5) * 0.08}s`);
     }
     revealIO.observe(el);
+  });
+
+  // If an element is already on screen on page load (e.g. hero content,
+  // or a short page), reveal it immediately instead of waiting on scroll.
+  requestAnimationFrame(() => {
+    revealEls.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in-view');
+    });
   });
 
   // Faux-live mock numbers for the hero device
@@ -724,7 +781,7 @@
 
   // Copy install command
   document.getElementById('copyBtn').addEventListener('click', () => {
-    const text = 'curl -sSL get.pulse.dev/install | sh';
+    const text = 'curl -sSL get.systemmonitor.dev/install | sh';
     navigator.clipboard.writeText(text).then(() => {
       const btn = document.getElementById('copyBtn');
       const original = btn.textContent;
