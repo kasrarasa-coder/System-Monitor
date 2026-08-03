@@ -1,4 +1,4 @@
-# ⚡ Pulse — A System Monitor That Lives on Your Desktop
+# ⚡ — A System Monitor That Lives on Your Desktop
 
 <p align="center">
   <b>Watch your machine breathe.</b><br>
